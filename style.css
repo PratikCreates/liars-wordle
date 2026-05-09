@@ -84,13 +84,13 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 0 16px;
-  height: 50px;
+  height: 40px;
   border-bottom: 1px solid var(--color-divider);
   flex-shrink: 0;
 }
 
 header h1 {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   letter-spacing: 0.15em;
   text-align: center;
@@ -140,13 +140,12 @@ header button:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 10px 0;
+  justify-content: space-around;
+  padding: 5px 0;
   max-width: 500px;
   margin: 0 auto;
   width: 100%;
-  height: calc(100% - 45px);
+  height: calc(100% - 40px);
 }
 
 /* Grid Styles */
@@ -155,12 +154,12 @@ header button:hover {
   grid-template-rows: repeat(6, 1fr);
   grid-gap: 5px;
   padding: 5px;
-  width: 90vw;
-  max-width: 350px;
+  width: 85vw;
+  max-width: 330px;
   height: auto;
   aspect-ratio: 5 / 6;
-  flex-grow: 1;
-  max-height: 420px;
+  flex-grow: 0;
+  max-height: 45vh;
 }
 
 .tile-row {
@@ -228,8 +227,8 @@ header button:hover {
   border: 0;
   padding: 0;
   margin: 0 2px;
-  height: 58px;
-  max-height: 8vh;
+  height: 54px;
+  max-height: 7vh;
   border-radius: 4px;
   cursor: pointer;
   user-select: none;
