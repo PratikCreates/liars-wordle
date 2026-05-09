@@ -84,15 +84,15 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 0 16px;
-  height: 65px;
+  height: 50px;
   border-bottom: 1px solid var(--color-divider);
   flex-shrink: 0;
 }
 
 header h1 {
-  font-size: 32px;
+  font-size: 24px;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
   text-align: center;
   flex-grow: 1;
 }
@@ -140,11 +140,13 @@ header button:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  padding: 20px 0;
-  max-width: 550px;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 0;
+  max-width: 500px;
   margin: 0 auto;
   width: 100%;
+  height: calc(100% - 45px);
 }
 
 /* Grid Styles */
@@ -152,9 +154,13 @@ header button:hover {
   display: grid;
   grid-template-rows: repeat(6, 1fr);
   grid-gap: 5px;
-  padding: 10px;
-  width: 385px;
-  height: 462px;
+  padding: 5px;
+  width: 90vw;
+  max-width: 350px;
+  height: auto;
+  aspect-ratio: 5 / 6;
+  flex-grow: 1;
+  max-height: 420px;
 }
 
 .tile-row {
@@ -221,8 +227,9 @@ header button:hover {
   font-weight: 700;
   border: 0;
   padding: 0;
-  margin: 0 3px;
-  height: 64px;
+  margin: 0 2px;
+  height: 58px;
+  max-height: 8vh;
   border-radius: 4px;
   cursor: pointer;
   user-select: none;
@@ -796,29 +803,11 @@ hr {
 .color-dot.present { background: var(--color-present); }
 .color-dot.correct { background: var(--color-correct); }
 
-/* Responsive adjustments for short screens (Mobile Safari/iPhone) */
-@media (max-height: 750px) {
-  header { height: 50px; }
-  header h1 { font-size: 24px; }
-  .grid { 
-    height: 380px; 
-    width: 310px; 
-    padding: 5px;
-  }
-  .tile { font-size: 24px; }
-  .key { height: 52px; margin: 0 2px; }
-  #game-container { padding: 10px 0; }
-  .no-cap-badge { font-size: 0.75rem; left: calc(100% + 10px); }
-}
-
-@media (max-height: 650px) {
+/* Final fail-safe for very short phones */
+@media (max-height: 600px) {
   header { height: 40px; }
-  header h1 { font-size: 20px; }
-  .grid { 
-    height: 320px; 
-    width: 260px; 
-  }
-  .tile { font-size: 20px; border-width: 1px; }
-  .key { height: 44px; font-size: 11px; }
-  .keyboard { margin-bottom: 5px; }
+  header h1 { font-size: 18px; }
+  .grid { max-height: 280px; }
+  .key { height: 40px; }
+  .no-cap-badge { font-size: 0.6rem; left: calc(100% + 5px); }
 }
