@@ -100,14 +100,13 @@ header h1 {
   margin: 0;
   line-height: 1;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  overflow: visible;
 }
 
 @media (max-width: 400px) {
   header h1 {
-    font-size: 18px;
-    letter-spacing: 0.1em;
+    font-size: 16px;
+    letter-spacing: 0.05em;
   }
 }
 
