@@ -300,6 +300,10 @@ class LiarsWordle {
             row.style.position = 'relative';
             row.appendChild(badge);
             setTimeout(() => badge.classList.add('visible'), 1500);
+            setTimeout(() => {
+                badge.classList.remove('visible');
+                setTimeout(() => badge.remove(), 600);
+            }, 4500);
         }
 
         const trueColors = this.calculateColors(guess, this.targetWord);

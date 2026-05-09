@@ -340,8 +340,8 @@ header button:hover {
   height: 100%;
   background-color: var(--color-bg-modal);
   display: flex;
-  align-items: flex-start;
-  padding-top: clamp(20px, 8vh, 80px);
+  align-items: center;
+  padding: 16px;
   justify-content: center;
   z-index: 1000;
   opacity: 1;
@@ -360,11 +360,11 @@ header button:hover {
   background: var(--color-bg);
   padding: 16px 20px;
   border-radius: 12px;
-  width: 90%;
+  width: 100%;
   max-width: 440px;
   position: relative;
   box-shadow: 0 4px 24px var(--color-bg-modal);
-  max-height: 95vh;
+  max-height: 90vh;
   overflow-y: auto;
   text-align: center;
 }
@@ -465,7 +465,13 @@ header button:hover {
 @media (max-width: 800px) {
     .help-grid {
         grid-template-columns: 1fr;
-        gap: 24px;
+        gap: 16px;
+    }
+    .help-column h3 {
+        margin: 8px 0;
+    }
+    .example {
+        margin-bottom: 12px;
     }
 }
 
