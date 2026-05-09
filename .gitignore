@@ -20,3 +20,6 @@ artifacts/
 dist/
 build/
 node_modules/
+
+# Social Media Posts
+REDDIT_POST.md
