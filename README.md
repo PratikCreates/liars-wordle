@@ -4,6 +4,8 @@
 
 Liar's Wordle is a twist on the classic game where the computer can lie. For the first four rounds, the game may "upgrade" a tile color (Gray to Yellow, or Yellow to Green). You have to find the truth before you run out of turns.
 
+**👉 [Play Liar's Wordle Now](https://pratikcreates.github.io/liars-wordle/)**
+
 ## Mechanics
 
 ### The Deception
