@@ -825,8 +825,29 @@ hr {
   header h1 { font-size: 18px; }
   .grid { max-height: 40vh; width: 80vw; }
   .key { height: 42px; font-size: 11px; }
-  .no-cap-badge { font-size: 0.6rem; left: calc(100% + 5px); }
   #game-container { gap: 5px; }
+}
+
+/* Global Mobile Fixes (Width-based) */
+@media (max-width: 600px) {
+  .no-cap-badge {
+    left: 50% !important;
+    top: -30px !important;
+    transform: translateX(-50%) scale(0.8) !important;
+  }
+  .no-cap-badge.visible {
+    transform: translateX(-50%) scale(1) !important;
+  }
+  
+  .stat-value { font-size: 1.1rem; }
+  .stat-label { font-size: 0.55rem; }
+  .modal-content { padding: 12px 14px; width: 94%; }
+  .audit-card { min-width: 70px; height: 80px; padding: 5px; }
+  .audit-letter { font-size: 0.9rem; }
+  .audit-grid { gap: 8px; }
+  .modal-button { padding: 10px; font-size: 0.85rem; }
+  .stats-actions { flex-direction: row; flex-wrap: wrap; }
+  .stats-actions .modal-button { flex: 1 1 45%; }
 }
 
 /* Tablet and Desktop Enhancements */
