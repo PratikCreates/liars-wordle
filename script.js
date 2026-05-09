@@ -92,15 +92,19 @@ class LiarsWordle {
         this.setupEventListeners();
         this.applySettings();
         
-        // Check if user is "logged in"
+        // Show help modal on first visit
+        if (!localStorage.getItem('liars_wordle_seen_help')) {
+            document.getElementById('help-modal').classList.remove('hidden');
+            localStorage.setItem('liars_wordle_seen_help', 'true');
+        }
+
+        // We are always initialized now, login moved to endgame
+        this.isInitialized = true;
+        document.getElementById('login-modal').classList.add('hidden');
+        
         const username = localStorage.getItem('liars_wordle_user');
-        if (username) {
-            document.getElementById('login-modal').classList.add('hidden');
-            this.isInitialized = true;
-            // Show stats button if they have played before
-            if (this.stats.gamesPlayed > 0) {
-                document.getElementById('stats-btn').classList.remove('hidden');
-            }
+        if (username && this.stats.gamesPlayed > 0) {
+            document.getElementById('stats-btn').classList.remove('hidden');
         }
     }
 
@@ -314,7 +318,7 @@ class LiarsWordle {
         this.displayColors.push(displayColors);
         this.actualColors.push(trueColors);
 
-        // Record Share Grid Row
+        // Record Share Grid Row (Preserve deceptions for the final share)
         let shareRow = '';
         for (let i = 0; i < 5; i++) {
             if (displayColors[i] !== trueColors[i]) {
@@ -324,7 +328,7 @@ class LiarsWordle {
             } else if (trueColors[i] === 'present') {
                 shareRow += '🟨';
             } else {
-                shareRow += '⬛'; // Standardizing on black square for export as requested
+                shareRow += '⬛';
             }
         }
         this.shareGrid.push(shareRow);
@@ -387,21 +391,8 @@ class LiarsWordle {
                 reveals.push({ ...lie, letter });
                 this.detectionSpeeds.push((this.guesses.length + 1) - lie.turnLied);
                 
-                // Update historical state
+                // Update historical state (UI only, preserve shareGrid)
                 this.displayColors[lie.row][lie.colIndex] = lie.actualColor;
-                
-                // Update Share Grid for that row
-                const rowGuess = this.guesses[lie.row];
-                const rowActual = this.actualColors[lie.row];
-                const rowDisplay = this.displayColors[lie.row];
-                let shareRow = '';
-                for (let i = 0; i < 5; i++) {
-                    if (rowDisplay[i] !== rowActual[i]) shareRow += '🧢';
-                    else if (rowActual[i] === 'correct') shareRow += '🟩';
-                    else if (rowActual[i] === 'present') shareRow += '🟨';
-                    else shareRow += '⬛';
-                }
-                this.shareGrid[lie.row] = shareRow;
 
                 // Update lie history
                 const lieRecord = this.lieHistory.find(l => l.letter === letter && l.turnRevealed === null);
@@ -728,8 +719,21 @@ class LiarsWordle {
             document.getElementById('loss-message').classList.remove('hidden');
             this.showToast("OOPS");
         }
+
+        // Show stats button
         document.getElementById('stats-btn').classList.remove('hidden');
-        this.showStatsModal();
+
+        // Login check at endgame
+        const username = localStorage.getItem('liars_wordle_user');
+        if (!username) {
+            setTimeout(() => {
+                const loginModal = document.getElementById('login-modal');
+                loginModal.querySelector('h2').textContent = 'SAVE YOUR PROGRESS';
+                loginModal.classList.remove('hidden');
+            }, 4000);
+        } else {
+            this.showStatsModal();
+        }
     }
 }
 

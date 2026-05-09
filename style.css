@@ -409,7 +409,7 @@ header button:hover {
 
 .no-cap-badge {
     position: absolute;
-    right: -105px;
+    left: calc(100% + 20px);
     top: 50%;
     transform: translateY(-50%) scale(0.8);
     font-size: 0.85rem;
