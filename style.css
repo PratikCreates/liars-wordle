@@ -112,7 +112,7 @@ header h1 {
 
 .header-left, .header-right {
   display: flex;
-  width: 100px;
+  width: 45px;
 }
 
 .header-right {
