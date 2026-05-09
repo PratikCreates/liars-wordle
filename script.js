@@ -137,9 +137,16 @@ class LiarsWordle {
             if (username) {
                 localStorage.setItem('liars_wordle_user', username);
                 document.getElementById('login-modal').classList.add('hidden');
+                document.getElementById('save-progress-btn').classList.add('hidden');
                 this.isInitialized = true;
                 this.showToast(`Welcome, ${username}!`);
             }
+        });
+
+        document.getElementById('save-progress-btn').addEventListener('click', () => {
+            const loginModal = document.getElementById('login-modal');
+            loginModal.querySelector('h2').textContent = 'SAVE YOUR PROGRESS';
+            loginModal.classList.remove('hidden');
         });
 
         document.getElementById('play-again-btn').addEventListener('click', () => location.reload());
@@ -694,6 +701,14 @@ class LiarsWordle {
             document.getElementById('intelligence-brief').classList.add('hidden');
         }
         
+        const username = localStorage.getItem('liars_wordle_user');
+        const saveBtn = document.getElementById('save-progress-btn');
+        if (!username) {
+            saveBtn.classList.remove('hidden');
+        } else {
+            saveBtn.classList.add('hidden');
+        }
+
         modal.classList.remove('hidden');
     }
 
@@ -723,17 +738,8 @@ class LiarsWordle {
         // Show stats button
         document.getElementById('stats-btn').classList.remove('hidden');
 
-        // Login check at endgame
-        const username = localStorage.getItem('liars_wordle_user');
-        if (!username) {
-            setTimeout(() => {
-                const loginModal = document.getElementById('login-modal');
-                loginModal.querySelector('h2').textContent = 'SAVE YOUR PROGRESS';
-                loginModal.classList.remove('hidden');
-            }, 4000);
-        } else {
-            this.showStatsModal();
-        }
+        // Show stats modal immediately
+        setTimeout(() => this.showStatsModal(), 1500);
     }
 }
 
