@@ -433,20 +433,22 @@ header button:hover {
 
 .no-cap-badge {
     position: absolute;
-    left: calc(100% + 20px);
-    top: 50%;
-    transform: translateY(-50%) scale(0.8);
+    left: 50%;
+    bottom: -35px;
+    top: auto;
+    transform: translateX(-50%) scale(0.8);
     font-size: 0.85rem;
     color: var(--color-correct);
     border: 2px solid var(--color-correct);
-    padding: 6px 14px;
+    padding: 4px 12px;
     border-radius: 6px;
     font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.1em;
     background: rgba(83, 141, 78, 0.15);
     white-space: nowrap;
     opacity: 0;
+    z-index: 100;
     transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: flex;
     align-items: center;
@@ -457,7 +459,7 @@ header button:hover {
 
 .no-cap-badge.visible {
     opacity: 1;
-    transform: translateY(-50%) scale(1);
+    transform: translateX(-50%) scale(1);
 }
 
 @media (max-width: 800px) {
@@ -830,21 +832,13 @@ hr {
 
 /* Global Mobile Fixes (Width-based) */
 @media (max-width: 600px) {
-  .no-cap-badge {
-    left: 50% !important;
-    top: -30px !important;
-    transform: translateX(-50%) scale(0.8) !important;
-  }
-  .no-cap-badge.visible {
-    transform: translateX(-50%) scale(1) !important;
-  }
-  
-  .stat-value { font-size: 1.1rem; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 16px; }
+  .stat-value { font-size: 1.2rem; }
   .stat-label { font-size: 0.55rem; }
   .modal-content { padding: 12px 14px; width: 94%; }
   .audit-card { min-width: 70px; height: 80px; padding: 5px; }
   .audit-letter { font-size: 0.9rem; }
-  .audit-grid { gap: 8px; }
+  .audit-grid { gap: 6px; padding: 5px 0; }
   .modal-button { padding: 10px; font-size: 0.85rem; }
   .stats-actions { flex-direction: row; flex-wrap: wrap; }
   .stats-actions .modal-button { flex: 1 1 45%; }
