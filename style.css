@@ -112,14 +112,16 @@ header h1 {
 
 .header-left, .header-right {
   display: flex;
-  width: 45px;
+  width: 80px;
+  gap: 4px;
+  align-items: center;
 }
 
 .header-right {
   justify-content: flex-end;
 }
 
-header button {
+header button, header .header-link {
   background: none;
   border: none;
   color: var(--color-text-secondary);
@@ -130,9 +132,11 @@ header button {
   justify-content: center;
   transition: all 0.2s ease;
   border-radius: 4px;
+  text-decoration: none;
+  font-size: 1.2rem;
 }
 
-header button:hover {
+header button:hover, header .header-link:hover {
     background: var(--color-key-bg-default);
     color: var(--color-text-primary);
     transform: scale(1.1);
