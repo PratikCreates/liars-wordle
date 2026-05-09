@@ -99,6 +99,16 @@ header h1 {
   flex-grow: 1;
   margin: 0;
   line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 400px) {
+  header h1 {
+    font-size: 18px;
+    letter-spacing: 0.1em;
+  }
 }
 
 .header-left, .header-right {
@@ -131,11 +141,11 @@ header button:hover {
 
 #help-btn {
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     border: 2px solid var(--color-border) !important;
     border-radius: 50% !important;
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     padding: 0 !important;
 }
 
