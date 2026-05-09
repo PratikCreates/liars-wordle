@@ -1,0 +1,22 @@
+# IDE / Local Cache
+.gemini/
+.tempmediaStorage/
+.vscode/
+.idea/
+.DS_Store
+*.log
+
+# Project Utilities
+extract_words.py
+
+# Brain / Memory
+brain/
+scratch/
+logs/
+knowledge/
+artifacts/
+
+# Deployment
+dist/
+build/
+node_modules/

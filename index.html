@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liar's Wordle - The Deceiver</title>
+    <meta name="description" content="A twisted version of Wordle where the game might lie to you. Can you spot the deception?">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <button id="help-btn" aria-label="How to play">?</button>
+        </div>
+        <h1>LIAR'S WORDLE</h1>
+        <div class="header-right">
+            <button id="stats-btn" aria-label="Statistics" class="hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                    <path fill="currentColor" d="M16,11V3H8v6H2v12h20V11H16z M10,5h4v14h-4V5z M4,11h4v8H4V11z M20,19h-4v-6h4V19z"/>
+                </svg>
+            </button>
+            <button id="settings-btn" aria-label="Settings">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                    <path fill="currentColor" d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.81,11.69,4.81,12c0,0.31,0.02,0.65,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.5c-1.93,0-3.5-1.57-3.5-3.5 s1.57-3.5,3.5-3.5s3.5,1.57,3.5,3.5S13.93,15.5,12,15.5z"/>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <main id="game-container">
+        <div id="board" class="grid"></div>
+        
+        <div id="keyboard" class="keyboard">
+            <div class="keyboard-row">
+                <button class="key" data-key="Q">Q</button>
+                <button class="key" data-key="W">W</button>
+                <button class="key" data-key="E">E</button>
+                <button class="key" data-key="R">R</button>
+                <button class="key" data-key="T">T</button>
+                <button class="key" data-key="Y">Y</button>
+                <button class="key" data-key="U">U</button>
+                <button class="key" data-key="I">I</button>
+                <button class="key" data-key="O">O</button>
+                <button class="key" data-key="P">P</button>
+            </div>
+            <div class="keyboard-row">
+                <div class="spacer half"></div>
+                <button class="key" data-key="A">A</button>
+                <button class="key" data-key="S">S</button>
+                <button class="key" data-key="D">D</button>
+                <button class="key" data-key="F">F</button>
+                <button class="key" data-key="G">G</button>
+                <button class="key" data-key="H">H</button>
+                <button class="key" data-key="J">J</button>
+                <button class="key" data-key="K">K</button>
+                <button class="key" data-key="L">L</button>
+                <div class="spacer half"></div>
+            </div>
+            <div class="keyboard-row">
+                <button class="key big" data-key="ENTER">ENTER</button>
+                <button class="key" data-key="Z">Z</button>
+                <button class="key" data-key="X">X</button>
+                <button class="key" data-key="C">C</button>
+                <button class="key" data-key="V">V</button>
+                <button class="key" data-key="B">B</button>
+                <button class="key" data-key="N">N</button>
+                <button class="key" data-key="M">M</button>
+                <button class="key big" data-key="BACKSPACE">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                        <path fill="currentColor" d="M22,3H7C6.31,3,5.77,3.35,5.41,3.88L0,12l5.41,8.11C5.77,20.65,6.31,21,7,21h15c1.1,0,2-0.9,2-2V5C24,3.9,23.1,3,22,3z M22,19H7.41L3.07,12l4.33-7H22V19z M9,16l2.59-2.59L14.17,16L16,14.17L13.41,11.58L16,9L14.17,7.17L11.59,9.75L9,7.17L7.17,9L9.75,11.58L7.17,14.17L9,16z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modals -->
+    <div id="login-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2 class="modal-title">THE DECEIVER</h2>
+            <p class="modal-body">A Liar's Wordle. Enter your name to begin.</p>
+            <div class="input-group">
+                <input type="text" id="username" placeholder="Username" maxlength="15">
+            </div>
+            <button id="login-btn" class="modal-button">Start Game</button>
+        </div>
+    </div>
+
+    <div id="stats-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="close-btn">&times;</button>
+            <h2 class="modal-title">STATISTICS</h2>
+            <div id="win-message" class="modal-body hidden" style="margin-bottom: 24px; text-align: center;">
+                <div style="background: var(--color-correct); color: white; padding: 12px; border-radius: 8px; margin-bottom: 16px; box-shadow: 0 4px 12px rgba(106, 170, 100, 0.3);">
+                    <h2 style="margin: 0; font-size: 1.6rem; letter-spacing: 0.15em; font-weight: 900;">VICTORY</h2>
+                </div>
+                <p style="font-size: 1.1rem; font-weight: 500;">You found the truth!</p>
+            </div>
+            <div id="loss-message" class="modal-body hidden" style="margin-bottom: 24px; text-align: center;">
+                <div style="background: #e91e63; color: white; padding: 12px; border-radius: 8px; margin-bottom: 16px; box-shadow: 0 4px 12px rgba(233, 30, 99, 0.3);">
+                    <h2 style="margin: 0; font-size: 1.6rem; letter-spacing: 0.15em; font-weight: 900;">DECEIVED</h2>
+                </div>
+                <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: 8px;">The word was:</p>
+                <div id="target-word-display" style="display: flex; justify-content: center; gap: 6px; margin-top: 8px;">
+                    <!-- Tiles will be injected here via script -->
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-item"><div id="stat-played" class="stat-value">0</div><div class="stat-label">Played</div></div>
+                <div class="stat-item"><div id="stat-win-pct" class="stat-value">0</div><div class="stat-label">Win %</div></div>
+                <div class="stat-item"><div id="stat-current-streak" class="stat-value">0</div><div class="stat-label">Streak</div></div>
+                <div class="stat-item"><div id="stat-max-streak" class="stat-value">0</div><div class="stat-label">Max</div></div>
+            </div>
+
+            <div style="margin-top: 16px; background: var(--color-bg); padding: 12px; border-radius: 8px; border: 1px solid var(--color-divider);">
+                <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr);">
+                    <div class="stat-item"><div id="stat-deception-level" class="stat-value">0</div><div class="stat-label">Deceptions</div></div>
+                    <div class="stat-item"><div id="stat-detection-speed" class="stat-value" style="font-size: 1.1rem;">-</div><div class="stat-label">Reveal Delay</div></div>
+                    <div class="stat-item"><div id="stat-gaslight-index" class="stat-value">0</div><div class="stat-label">Gaslight</div></div>
+                </div>
+            </div>
+
+            <div id="detailed-stats-container" class="hidden" style="margin-top: 16px; padding: 12px; background: var(--color-key-bg-default); border-radius: 8px;">
+                <h3 style="font-size: 0.7rem; font-weight: 900; letter-spacing: 0.2em; margin-bottom: 12px; text-transform: uppercase; color: var(--color-text-secondary);">DECEPTION AUDIT</h3>
+                <div id="audit-grid" class="audit-grid"></div>
+            </div>
+
+            <div id="intelligence-brief" class="hidden" style="margin-top: 16px; padding: 14px; background: rgba(255,255,255,0.03); border-radius: 8px; border-left: 4px solid var(--color-correct); text-align: left; transition: all 0.3s ease;">
+                <div style="font-size: 0.65rem; color: var(--color-text-light); text-transform: uppercase; font-weight: 800; letter-spacing: 0.15em; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+                    <span style="display: inline-block; width: 6px; height: 6px; background: var(--color-correct); border-radius: 50%;"></span>
+                    Performance Briefing
+                </div>
+                <div id="brief-summary" style="font-weight: 700; margin-bottom: 4px; color: var(--color-text-primary); font-size: 0.95rem;"></div>
+                <div id="brief-advice" style="font-style: italic; color: var(--color-text-secondary); font-size: 0.85rem; line-height: 1.5; opacity: 0.9;"></div>
+            </div>
+
+            
+            <div class="stats-actions" style="margin-top: 16px;">
+                <button id="share-btn" class="modal-button" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    Share
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                        <path fill="currentColor" d="M18,16.08c-0.76,0-1.44,0.3-1.96,0.77L8.91,12.7c0.05-0.23,0.09-0.46,0.09-0.7s-0.04-0.47-0.09-0.7l7.05-4.11c0.54,0.5,1.25,0.81,2.04,0.81 c1.66,0,3-1.34,3-3s-1.34-3-3-3s-3,1.34-3,3c0,0.24,0.04,0.47,0.09,0.7L8.04,9.81C7.5,9.31,6.79,9,6,9c-1.66,0-3,1.34-3,3s1.34,3,3,3 c0.79,0,1.5-0.31,2.04-0.81l7.12,4.16c-0.05,0.21-0.08,0.43-0.08,0.65c0,1.61,1.31,2.92,2.92,2.92s2.92-1.31,2.92-2.92 S19.61,16.08,18,16.08z"/>
+                    </svg>
+                </button>
+            </div>
+            <button id="play-again-btn" class="modal-button">Play Again</button>
+        </div>
+    </div>
+
+    <div id="settings-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="close-btn">&times;</button>
+            <h2 class="modal-title">SETTINGS</h2>
+            <div class="setting-item">
+                <div class="setting-text">
+                    <div class="setting-label">Keyboard Color Assist</div>
+                    <div class="setting-desc">Highlight keys on the keyboard</div>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" id="keyboard-assist" checked>
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div class="setting-item">
+                <div class="setting-text">
+                    <div class="setting-label">Dark Mode</div>
+                    <div class="setting-desc">Toggle dark/light theme</div>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" id="dark-mode-toggle">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div class="setting-item" style="border-bottom: none; display: flex; gap: 8px; justify-content: center; margin-top: 16px; padding-bottom: 0;">
+                <button id="export-data-btn" class="secondary-button" style="padding: 8px 12px; font-size: 12px;">Export Data</button>
+                <button id="import-data-btn" class="secondary-button" style="padding: 8px 12px; font-size: 12px;">Import Data</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="help-modal" class="modal-overlay hidden">
+        <div class="modal-content help-content">
+            <button class="close-btn">&times;</button>
+            <h2 class="modal-title">HOW TO PLAY</h2>
+            <div class="modal-body help-grid">
+                <div class="help-column">
+                    <h3>The Basics</h3>
+                    <p style="margin-bottom: 12px; font-size: 0.95rem;">Guess the word in 6 tries. Each guess must be a valid 5-letter word.</p>
+                    
+                    <div class="example">
+                        <div class="tile-row">
+                            <div class="tile correct">W</div>
+                            <div class="tile">E</div>
+                            <div class="tile">A</div>
+                            <div class="tile">R</div>
+                            <div class="tile">Y</div>
+                        </div>
+                        <p><strong>W</strong> is in the correct spot.</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="tile-row">
+                            <div class="tile">P</div>
+                            <div class="tile present">I</div>
+                            <div class="tile">L</div>
+                            <div class="tile">O</div>
+                            <div class="tile">T</div>
+                        </div>
+                        <p><strong>I</strong> is in the wrong spot.</p>
+                    </div>
+                    
+                    <div class="example">
+                        <div class="tile-row">
+                            <div class="tile">V</div>
+                            <div class="tile">A</div>
+                            <div class="tile">G</div>
+                            <div class="tile absent">U</div>
+                            <div class="tile">E</div>
+                        </div>
+                        <p><strong>U</strong> is not in the word.</p>
+                    </div>
+                </div>
+
+                <div class="help-column" style="border-left: 1px solid var(--color-divider); padding-left: 20px;">
+                    <h3 style="color: #e91e63;">The Twist: Deception</h3>
+                    <p style="margin-bottom: 12px; font-size: 0.95rem;">In the first 4 rounds, the game <strong>may lie</strong> by upgrading a color (Gray &rarr; Yellow or Yellow &rarr; Green).</p>
+                    
+                    <div class="example">
+                        <p style="margin-bottom: 8px; font-size: 0.85rem;"><strong>Lied:</strong> Turn 1 <strong>E</strong> is Gray, but shown as Yellow.</p>
+                        <div class="tile-row">
+                            <div class="tile absent">S</div>
+                            <div class="tile absent">L</div>
+                            <div class="tile correct">A</div>
+                            <div class="tile absent">T</div>
+                            <div class="tile present">E</div>
+                        </div>
+                    </div>
+
+                    <p style="margin: 12px 0; font-size: 0.9rem;">Re-test a lied-about letter to <strong>reveal the truth</strong> and retroactively correct history.</p>
+                    
+                    <div class="example">
+                        <p style="margin-bottom: 8px; font-size: 0.85rem;"><strong>Revealed:</strong> Turn 2 re-tests <strong>E</strong>. Turn 1 flips back to Gray!</p>
+                        <div class="tile-row" style="opacity: 0.5; transform: scale(0.9); margin-bottom: 4px;">
+                            <div class="tile absent">S</div>
+                            <div class="tile absent">L</div>
+                            <div class="tile correct">A</div>
+                            <div class="tile absent">T</div>
+                            <div class="tile absent">E</div>
+                        </div>
+                        <div class="tile-row">
+                            <div class="tile absent">D</div>
+                            <div class="tile absent">E</div>
+                            <div class="tile absent">N</div>
+                            <div class="tile absent">I</div>
+                            <div class="tile absent">M</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast-container"></div>
+
+    <script src="words.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
