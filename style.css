@@ -77,6 +77,8 @@ body {
   flex-direction: column;
   overflow: hidden;
   transition: background-color 0.3s ease, color 0.3s ease;
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 header {
@@ -84,17 +86,19 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 0 16px;
-  height: 40px;
+  height: 60px;
   border-bottom: 1px solid var(--color-divider);
   flex-shrink: 0;
 }
 
 header h1 {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 700;
   letter-spacing: 0.15em;
   text-align: center;
   flex-grow: 1;
+  margin: 0;
+  line-height: 1;
 }
 
 .header-left, .header-right {
@@ -145,7 +149,7 @@ header button:hover {
   max-width: 500px;
   margin: 0 auto;
   width: 100%;
-  height: calc(100% - 40px);
+  height: calc(100% - 60px);
 }
 
 /* Grid Styles */
