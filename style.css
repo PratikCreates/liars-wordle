@@ -72,6 +72,7 @@ body {
   background-color: var(--color-bg);
   color: var(--color-text-primary);
   height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -794,3 +795,30 @@ hr {
 .color-dot.absent { background: var(--color-absent); }
 .color-dot.present { background: var(--color-present); }
 .color-dot.correct { background: var(--color-correct); }
+
+/* Responsive adjustments for short screens (Mobile Safari/iPhone) */
+@media (max-height: 750px) {
+  header { height: 50px; }
+  header h1 { font-size: 24px; }
+  .grid { 
+    height: 380px; 
+    width: 310px; 
+    padding: 5px;
+  }
+  .tile { font-size: 24px; }
+  .key { height: 52px; margin: 0 2px; }
+  #game-container { padding: 10px 0; }
+  .no-cap-badge { font-size: 0.75rem; left: calc(100% + 10px); }
+}
+
+@media (max-height: 650px) {
+  header { height: 40px; }
+  header h1 { font-size: 20px; }
+  .grid { 
+    height: 320px; 
+    width: 260px; 
+  }
+  .tile { font-size: 20px; border-width: 1px; }
+  .key { height: 44px; font-size: 11px; }
+  .keyboard { margin-bottom: 5px; }
+}
