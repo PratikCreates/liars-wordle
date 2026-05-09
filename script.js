@@ -189,25 +189,6 @@ class LiarsWordle {
             
             navigator.clipboard.writeText(text).then(() => this.showToast('Copied to clipboard'));
         });
-        
-        // Settings Import/Export
-        document.getElementById('export-data-btn').addEventListener('click', () => {
-            const data = btoa(JSON.stringify(this.stats));
-            navigator.clipboard.writeText(data).then(() => this.showToast('Data copied to clipboard!'));
-        });
-
-        document.getElementById('import-data-btn').addEventListener('click', () => {
-            const data = prompt('Paste your exported data here:');
-            if (data) {
-                try {
-                    this.stats = JSON.parse(atob(data));
-                    this.saveStats();
-                    this.showToast('Data imported successfully!');
-                } catch (e) {
-                    this.showToast('Invalid data format');
-                }
-            }
-        });
     }
 
     applySettings() {
