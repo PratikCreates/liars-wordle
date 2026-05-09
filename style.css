@@ -340,7 +340,8 @@ header button:hover {
   height: 100%;
   background-color: var(--color-bg-modal);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  padding-top: clamp(20px, 8vh, 80px);
   justify-content: center;
   z-index: 1000;
   opacity: 1;
@@ -397,14 +398,15 @@ header button:hover {
 }
 
 .help-content {
-    max-width: 1000px !important;
-    width: 95% !important;
+    max-width: 800px !important;
+    width: 92% !important;
+    padding: 20px !important;
 }
 
 .help-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 40px;
+    gap: 30px;
     text-align: left;
 }
 
